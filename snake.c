@@ -98,7 +98,7 @@ bool ateSelf(Snake* snake) {
     return false;
 }
 
-void resetGame(SDL_Surface* surface, Snake* snake, SDL_Rect* food) {
+void initializeGame(SDL_Surface* surface, Snake* snake, SDL_Rect* food) {
     for (int i = 0; i < MAX_SNAKE_LENGTH; i++)
         isSnakeBody[i] = false;
     SDL_FillSurfaceRect(surface, NULL, SURFACE_COLOR);
@@ -116,7 +116,7 @@ int main(void) {
     Snake snake;
     SDL_Rect food;
     
-    resetGame(surface, &snake, &food);
+    initializeGame(surface, &snake, &food);
 
     SDL_UpdateWindowSurface(window);
 
@@ -130,7 +130,7 @@ int main(void) {
             running = 0;
 
         if (ateSelf(&snake)) {
-            resetGame(surface, &snake, &food); 
+            initializeGame(surface, &snake, &food); 
         }
 
         if (snake.rects[0].x == food.x && snake.rects[0].y == food.y) {
